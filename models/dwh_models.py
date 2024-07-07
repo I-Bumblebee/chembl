@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Float, Integer, String, Text
+from sqlalchemy import DECIMAL, Boolean, Column, Float, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -14,7 +14,7 @@ class ChemblIdLookup(Base):
     status = Column(
         String,
         nullable=False,
-        default="ACTIVE"
+        default='ACTIVE'
     )
 
 
@@ -49,7 +49,7 @@ class CompoundProperties(Base):
     hbd = Column(Float, nullable=True)
     psa = Column(Float, nullable=True)
     rtb = Column(Float, nullable=True)
-    ro3_pass = Column(Float, nullable=True)
+    ro3_pass = Column(String, nullable=True)
     num_ro5_violations = Column(Float, nullable=True)
     cx_most_apka = Column(Float, nullable=True)
     cx_most_bpka = Column(Float, nullable=True)
@@ -72,29 +72,31 @@ class MoleculeDictionary(Base):
     __tablename__ = 'molecule_dictionary'
     molecule_chembl_id = Column(String, primary_key=True, nullable=False)
     pref_name = Column(String, nullable=True)
-    max_phase = Column(Float, nullable=True)
-    therapeutic_flag = Column(Float, nullable=True)
-    dosed_ingredient = Column(Float, nullable=True)
+    max_phase = Column(DECIMAL, nullable=True)
+    therapeutic_flag = Column(Boolean, nullable=True)
+    dosed_ingredient = Column(Boolean, nullable=True)
     structure_type = Column(String, nullable=True)
-    chebi_par_id = Column(Float, nullable=True)
+    chebi_par_id = Column(Integer, nullable=True)
     molecule_type = Column(String, nullable=True)
-    first_approval = Column(Float, nullable=True)
-    oral = Column(Float, nullable=True)
-    parenteral = Column(Float, nullable=True)
-    topical = Column(Float, nullable=True)
-    black_box_warning = Column(Float, nullable=True)
-    natural_product = Column(Float, nullable=True)
-    first_in_class = Column(Float, nullable=True)
-    chirality = Column(Float, nullable=True)
-    prodrug = Column(Float, nullable=True)
-    inorganic_flag = Column(Float, nullable=True)
-    usan_year = Column(Float, nullable=True)
-    availability_type = Column(Float, nullable=True)
+    first_approval = Column(Integer, nullable=True)
+    oral = Column(Boolean, nullable=True)
+    parenteral = Column(Boolean, nullable=True)
+    topical = Column(Boolean, nullable=True)
+    black_box_warning = Column(Integer, nullable=True)
+    natural_product = Column(Integer, nullable=True)
+    first_in_class = Column(Integer, nullable=True)
+    chirality = Column(Integer, nullable=True)
+    prodrug = Column(Integer, nullable=True)
+    inorganic_flag = Column(Integer, nullable=True)
+    usan_year = Column(Integer, nullable=True)
+    availability_type = Column(Integer, nullable=True)
     usan_stem = Column(String, nullable=True)
-    polymer_flag = Column(Float, nullable=True)
+    polymer_flag = Column(Integer, nullable=True)
     usan_substem = Column(String, nullable=True)
     usan_stem_definition = Column(String, nullable=True)
     indication_class = Column(String, nullable=True)
-    withdrawn_flag = Column(Float, nullable=True)
-    chemical_probe = Column(Float, nullable=True)
-    orphan = Column(Float, nullable=True)
+    withdrawn_flag = Column(Boolean, nullable=True)
+    chemical_probe = Column(Integer, nullable=True)
+    orphan = Column(Integer, nullable=True)
+    helm_notation = Column(String, nullable=True)
+    score = Column(Float, nullable=True)
